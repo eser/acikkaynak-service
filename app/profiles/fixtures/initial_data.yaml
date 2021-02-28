@@ -1,0 +1,25 @@
+- model: profiles.profile
+  pk: a072155e-5e0b-49cf-8d5b-c46b0e7a8001
+  fields:
+    slug: eser-ozvataf
+    status: active
+    type: individual
+    first_name: Eser
+    last_name: Ozvataf
+    gender: male
+    birthdate: 1984-04-16
+    email: eser@ozvataf.com
+    phone: 90 5115001122
+    profile_picture_uri: https://avatars.githubusercontent.com/u/866558?s=460&u=b22a39f91f830670029edf4a75a4917d167e3477&v=4
+    bio: "Thinks, Plans, Makes Development, Talks on Software"
+    location_city: null
+    location_country: 8df39c75-4a92-4d40-a4ab-156e17de133a
+    timezone: Europe/Istanbul
+    notification_messages: true
+    created_at: 2021-02-28 12:09:26.338436+00:00
+    updated_at: 2021-02-28 12:09:26.338436+00:00
+    deleted_at: null
+    users:
+    - 7675cf2f-315c-42cc-82ea-f048e00f28cc
+    languages:
+    - 78b0c0b5-6680-43ac-89be-44d2f8d40522

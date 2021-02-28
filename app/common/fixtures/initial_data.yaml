@@ -1,0 +1,33 @@
+- model: common.language
+  pk: 78b0c0b5-6680-43ac-89be-44d2f8d40522
+  fields:
+    iso_code: tr
+    name: Türkçe
+- model: common.country
+  pk: 8df39c75-4a92-4d40-a4ab-156e17de133a
+  fields:
+    iso_code: tr
+    name: Turkey
+- model: common.user
+  pk: 7675cf2f-315c-42cc-82ea-f048e00f28cc
+  fields:
+    password: pbkdf2_sha256$216000$4GSjPaVT6vQX$FFqJWyKEgRBJdlz+MOA0Y0eoOOrQBQ5Y0OIjvvXkyJ0=
+    last_login: 2021-02-02 08:19:40.717642+00:00
+    username: 1550831b-f874-40ab-8ade-2e799dcb26e0
+    first_name: Eser
+    last_name: Ozvataf
+    gender: male
+    birthdate: 1984-04-16
+    email: eser@ozvataf.com
+    phone: '+905385846620'
+    profile_picture_uri: null
+    locale: en-us
+    is_staff: true
+    is_superuser: true
+    is_active: true
+    date_joined: 2020-12-21 00:42:45+00:00
+    created_at: 2020-12-21 00:42:45+00:00
+    updated_at: 2021-01-02 03:23:36.440940+00:00
+    deleted_at: null
+    groups: []
+    user_permissions: []
