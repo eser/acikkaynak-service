@@ -8,6 +8,32 @@ from app.common.types import Genders
 from .types import ProfileStatuses, ProfileTypes
 
 
+class ProfileTag(models.Model):
+    uuid = models.UUIDField(
+        primary_key=True, default=uuid4, editable=False, unique=True
+    )
+    slug = models.SlugField(
+        verbose_name=_("slug"),
+        max_length=255,
+        unique=True,
+        db_index=True,
+        validators=[validators.validate_slug],
+    )
+    name = models.CharField(
+        max_length=255, validators=[validators.ProhibitNullCharactersValidator()]
+    )
+
+    class Meta:
+        verbose_name = _("profile tag")
+        verbose_name_plural = _("profile tags")
+
+    def __str__(self):
+        return self.slug
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__} {self.pk}>"
+
+
 class Profile(models.Model):
     uuid = models.UUIDField(
         verbose_name=_("uuid"),
@@ -105,6 +131,9 @@ class Profile(models.Model):
         default=None,
         on_delete=models.RESTRICT,
         db_index=True,
+    )
+    tags = models.ManyToManyField(
+        verbose_name=_("tags"), to=ProfileTag, related_name="tags"
     )
     languages = models.ManyToManyField(
         verbose_name=_("languages"), to=Language, related_name="profiles"

@@ -10,7 +10,6 @@ from app.achievements.models import Achievement
 
 class AchievementNode(DjangoObjectType):
     # id = graphene.ID(source="pk", required=True)
-    languages = graphene.List(LanguageNode)
 
     class Meta:
         model = Achievement
@@ -31,7 +30,7 @@ class Query(graphene.ObjectType):
 
     @staticmethod
     # pylint:disable=unused-argument
-    def resolve_profile_by_uuid(parent, info, uuid):
+    def resolve_achievement_by_uuid(parent, info, uuid):
         try:
             return Achievement.objects.get(uuid=uuid)
         except Achievement.DoesNotExist:
