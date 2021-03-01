@@ -3,7 +3,7 @@ from django.conf import settings
 from graphene_django.debug import DjangoDebug
 import app.common.schema
 import app.profiles.schema
-import app.achievements.schema
+import app.certificates.schema
 
 
 # queries
@@ -13,7 +13,7 @@ import app.achievements.schema
 class Query(
     app.common.schema.Query,
     app.profiles.schema.Query,
-    app.achievements.schema.Query,
+    app.certificates.schema.Query,
     graphene.ObjectType,
 ):
     if settings.DEBUG:
@@ -27,7 +27,7 @@ class Query(
 class Mutation(
     app.common.schema.Mutation,
     app.profiles.schema.Mutation,
-    app.achievements.schema.Mutation,
+    app.certificates.schema.Mutation,
     graphene.ObjectType,
 ):
     pass

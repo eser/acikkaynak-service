@@ -1,10 +1,11 @@
 from uuid import uuid4
 from django.db import models
+from django.core import validators
 from django.utils.translation import gettext_lazy as _
-from app.profiles.models import Profile
-from .types import AchievementTypes
+from .types import CertificateTypes, CertificateStatuses
 
-class Achievement(models.Model):
+
+class Certificate(models.Model):
     uuid = models.UUIDField(
         verbose_name=_("uuid"),
         primary_key=True,
@@ -12,14 +13,27 @@ class Achievement(models.Model):
         editable=False,
         unique=True,
     )
-    type = models.CharField(
-        verbose_name=_("type"), null=False, blank=False, max_length=255,
-        choices=AchievementTypes.choices(),
-        default=AchievementTypes.CLASS_ATTEND,
+    slug = models.SlugField(
+        verbose_name=_("slug"),
+        max_length=255,
+        unique=True,
+        db_index=True,
+        validators=[validators.validate_slug],
     )
-    profile = models.ForeignKey(to=Profile, on_delete=models.CASCADE, related_name="achievements")
-    earned_at = models.DateTimeField(
-        verbose_name=_("earned at"),
+    status = models.CharField(
+        verbose_name=_("status"),
+        max_length=255,
+        choices=CertificateStatuses.choices(),
+        default=CertificateStatuses.ACTIVE,
+    )
+    type = models.CharField(
+        verbose_name=_("type"),
+        max_length=255,
+        choices=CertificateTypes.choices(),
+        default=CertificateTypes.PROGRAM,
+    )
+    name = models.CharField(
+        max_length=255, validators=[validators.ProhibitNullCharactersValidator()]
     )
     created_at = models.DateTimeField(
         verbose_name=_("created at"), editable=False, auto_now_add=True
@@ -32,11 +46,11 @@ class Achievement(models.Model):
     )
 
     class Meta:
-        verbose_name = _("achievement")
-        verbose_name_plural = _("achievements")
+        verbose_name = _("certificate")
+        verbose_name_plural = _("certificates")
 
     def __str__(self):
-        return f"{self.pk}"
+        return self.slug
 
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.pk}>"

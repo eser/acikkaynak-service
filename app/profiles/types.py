@@ -18,3 +18,12 @@ class ProfileTypes(str, Enum):
     @classmethod
     def choices(cls):
         return [(key.value, key.name) for key in cls]
+
+
+class ProfileAchievementTypes(str, Enum):
+    CLASS_ATTEND = "class attend"
+    CONTRIBUTION = "contribution"
+
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]

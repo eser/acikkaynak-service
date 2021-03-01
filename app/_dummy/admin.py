@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Achievement
+from .models import Certificate
 
 
-class AchievementAdmin(admin.ModelAdmin):
+class CertificateAdmin(admin.ModelAdmin):
     # search_fields = ("uuid",)
     # date_hierarchy = "created_at"
 
@@ -10,4 +10,4 @@ class AchievementAdmin(admin.ModelAdmin):
     # list_filter = ("status", "type")
 
 
-admin.site.register(Achievement, AchievementAdmin)
+admin.site.register(Certificate, CertificateAdmin)

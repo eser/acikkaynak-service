@@ -1,9 +1,8 @@
 from enum import Enum
 
 
-class AchievementTypes(str, Enum):
-    CLASS_ATTEND = "class attend"
-    CONTRIBUTION = "contribution"
+class CertificateTypes(str, Enum):
+    PROGRAM = "program"
 
     @classmethod
     def choices(cls):

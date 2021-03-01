@@ -1,13 +1,12 @@
 from django.contrib import admin
-from django.db import models
 from django.utils.html import format_html
+from .models import Profile, ProfileAchievement, ProfileTag
 
-from .models import Profile, ProfileTag
 
+class ProfileAchievementInline(admin.TabularInline):
+    model = ProfileAchievement
+    extra = 0
 
-# class ProfileTagInline(admin.TabularInline):
-#     model = ProfileTag
-#     extra = 0
 
 class ProfileTagAdmin(admin.ModelAdmin):
     search_fields = ("slug", "name")
@@ -22,9 +21,9 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ("validated_title", "first_name", "last_name", "status", "type", "email", "phone", "created_at", "updated_at")
     list_filter = ("status", "type")
 
-    # inlines = (
-    #     ProfileTagInline,
-    # )
+    inlines = (
+        ProfileAchievementInline,
+    )
 
     @staticmethod
     def validated_title(row):

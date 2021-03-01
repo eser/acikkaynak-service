@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     "graphene_django",
     "app.common",
     "app.profiles",
-    "app.achievements",
+    "app.certificates",
 ]
 
 MIDDLEWARE = [

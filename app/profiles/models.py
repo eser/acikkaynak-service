@@ -5,7 +5,7 @@ from django.core import validators
 from django.utils.translation import gettext_lazy as _
 from app.common.models import Language, Country, City
 from app.common.types import Genders
-from .types import ProfileStatuses, ProfileTypes
+from .types import ProfileStatuses, ProfileTypes, ProfileAchievementTypes
 
 
 class ProfileTag(models.Model):
@@ -163,6 +163,47 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.slug
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__} {self.pk}>"
+
+    # def get_absolute_url(self):
+    #     return reverse("_detail", kwargs={"pk": self.pk})
+
+
+class ProfileAchievement(models.Model):
+    uuid = models.UUIDField(
+        verbose_name=_("uuid"),
+        primary_key=True,
+        default=uuid4,
+        editable=False,
+        unique=True,
+    )
+    type = models.CharField(
+        verbose_name=_("type"), null=False, blank=False, max_length=255,
+        choices=ProfileAchievementTypes.choices(),
+        default=ProfileAchievementTypes.CLASS_ATTEND,
+    )
+    profile = models.ForeignKey(to=Profile, on_delete=models.CASCADE, related_name="achievements")
+    earned_at = models.DateTimeField(
+        verbose_name=_("earned at"),
+    )
+    created_at = models.DateTimeField(
+        verbose_name=_("created at"), editable=False, auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("updated at"), null=True, blank=True, auto_now=True
+    )  # editable=False,
+    deleted_at = models.DateTimeField(
+        verbose_name=_("deleted at"), editable=False, null=True, blank=True
+    )
+
+    class Meta:
+        verbose_name = _("profile achievement")
+        verbose_name_plural = _("profile achievements")
+
+    def __str__(self):
+        return f"{self.pk}"
 
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.pk}>"
