@@ -1,7 +1,18 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Certificate
+from .models import Certificate, CertificateClaim, CertificateRequirement
 
+
+class CertificateRequirementInline(admin.TabularInline):
+    model = CertificateRequirement
+    extra = 0
+
+
+class CertificateClaimAdmin(admin.ModelAdmin):
+    search_fields = ("profile__slug", "profile__first_name", "profile__last_name", "certificate__slug", "certificate__name")
+
+    list_display = ("profile", "certificate", "type")
+    
 
 class CertificateAdmin(admin.ModelAdmin):
     search_fields = ("slug", "name")
@@ -9,6 +20,10 @@ class CertificateAdmin(admin.ModelAdmin):
 
     list_display = ("validated_title", "name", "status", "type", "created_at", "updated_at")
     list_filter = ("status", "type")
+
+    inlines = (
+        CertificateRequirementInline,
+    )
 
     @staticmethod
     def validated_title(row):
@@ -27,3 +42,4 @@ class CertificateAdmin(admin.ModelAdmin):
     validated_title.admin_order_field = "slug"
 
 admin.site.register(Certificate, CertificateAdmin)
+admin.site.register(CertificateClaim, CertificateClaimAdmin)

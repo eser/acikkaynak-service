@@ -16,3 +16,13 @@ class CertificateTypes(str, Enum):
     @classmethod
     def choices(cls):
         return [(key.value, key.name) for key in cls]
+
+
+class CertificateClaimStatuses(str, Enum):
+    REJECTED = "rejected"
+    AWAITING_APPROVAL = "awaiting approval"
+    ACCEPTED = "accepted"
+
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]
