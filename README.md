@@ -260,8 +260,8 @@ query {
     achievements {
       edges {
         node {
-            type
-            earnedAt
+          type
+          earnedAt
         }
       }
     }

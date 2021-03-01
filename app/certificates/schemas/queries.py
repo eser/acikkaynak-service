@@ -15,12 +15,9 @@ class CertificateNode(DjangoObjectType):
         model = Certificate
         exclude = ("uuid",)
         interfaces = (graphene.relay.Node,)
-        # filter_fields = {
-        #     "first_name": ["exact", "icontains", "istartswith"],
-        #     "last_name": ["exact", "icontains", "istartswith"],
-        #     "email": ["exact", "icontains", "istartswith"],
-        #     "phone": ["exact", "icontains", "istartswith"],
-        # }
+        filter_fields = {
+            "name": ["exact", "icontains", "istartswith"],
+        }
 
 
 class Query(graphene.ObjectType):

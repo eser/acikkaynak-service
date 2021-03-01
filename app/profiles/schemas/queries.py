@@ -2,7 +2,7 @@ import graphene
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django.types import DjangoObjectType
 from app.common.schemas.languages import LanguageNode
-from app.profiles.models import Profile, ProfileTag
+from app.profiles.models import Profile, ProfileAchievement, ProfileTag
 
 
 # queries
@@ -18,6 +18,19 @@ class ProfileTagNode(DjangoObjectType):
         filter_fields = {
             "slug": ["exact", "icontains", "istartswith"],
             "name": ["exact", "icontains", "istartswith"],
+        }
+
+
+class ProfileAchievementNode(DjangoObjectType):
+    # id = graphene.ID(source="pk", required=True)
+
+    class Meta:
+        model = ProfileAchievement
+        exclude = ("uuid",)
+        interfaces = (graphene.relay.Node,)
+        filter_fields = {
+            "type": ["exact"],
+            "earned_at": ["exact", "lte", "gte"],
         }
 
 
