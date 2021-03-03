@@ -22,7 +22,9 @@ class ProfileTypes(str, Enum):
 
 class ProfileAchievementTypes(str, Enum):
     CLASS_ATTEND = "class attend"
-    CONTRIBUTION = "contribution"
+    OPEN_SOUCE_CONTRIBUTION = "open source contribution"
+    PUBLISHED_ARTICLE = "published article"
+    PRESENTATION = "presentation"
 
     @classmethod
     def choices(cls):

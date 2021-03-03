@@ -1,0 +1,28 @@
+- model: certificates.certificatecategory
+  pk: 958684c0-95c9-4134-8d74-6f8ce17f87cf
+  fields:
+    slug: web-development
+    name: Web Development
+    description: Certificates related with web development
+- model: certificates.certificate
+  pk: 35b8136e-fdf4-4d71-99d1-5d6400447bb4
+  fields:
+    certificate_category: 958684c0-95c9-4134-8d74-6f8ce17f87cf
+    certificate_category_weight: 1
+    slug: web-development-basics
+    status: active
+    type: program
+    name: Web Development Basics
+    description: ''
+    created_at: 2021-03-03 22:47:00.872772+00:00
+    updated_at: 2021-03-03 22:47:00.872823+00:00
+    deleted_at: null
+- model: certificates.certificaterequirement
+  pk: 2e1aae6a-75ff-405c-8d0b-ec0f21a67114
+  fields:
+    certificate: 35b8136e-fdf4-4d71-99d1-5d6400447bb4
+    name: First Requirements
+    description: ''
+    created_at: 2021-03-03 22:47:00.873974+00:00
+    updated_at: 2021-03-03 22:47:00.874001+00:00
+    deleted_at: null

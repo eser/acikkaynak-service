@@ -6,6 +6,45 @@ from app.profiles.models import Profile
 from .types import CertificateTypes, CertificateStatuses, CertificateClaimStatuses
 
 
+class CertificateCategory(models.Model):
+    uuid = models.UUIDField(
+        verbose_name=_("uuid"),
+        primary_key=True,
+        default=uuid4,
+        editable=False,
+        unique=True,
+    )
+    slug = models.SlugField(
+        verbose_name=_("slug"),
+        max_length=255,
+        unique=True,
+        db_index=True,
+        validators=[validators.validate_slug],
+    )
+    name = models.CharField(
+        max_length=255, validators=[validators.ProhibitNullCharactersValidator()]
+    )
+    description = models.TextField(
+        verbose_name=_("description"),
+        # null=True,
+        blank=True,
+        validators=[validators.ProhibitNullCharactersValidator()],
+    )
+
+    class Meta:
+        verbose_name = _("certificate category")
+        verbose_name_plural = _("certificate categories")
+
+    def __str__(self):
+        return self.slug
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__} {self.pk}>"
+
+    # def get_absolute_url(self):
+    #     return reverse("_detail", kwargs={"pk": self.pk})
+
+
 class Certificate(models.Model):
     uuid = models.UUIDField(
         verbose_name=_("uuid"),
@@ -13,6 +52,17 @@ class Certificate(models.Model):
         default=uuid4,
         editable=False,
         unique=True,
+    )
+    certificate_category = models.ForeignKey(
+        verbose_name=_("certificate category"),
+        db_column="certificate_category_uuid",
+        to=CertificateCategory,
+        related_name="certificates",
+        on_delete=models.RESTRICT,
+        db_index=True,
+    )
+    certificate_category_weight = models.IntegerField(
+        verbose_name=_("certificate category weight")
     )
     slug = models.SlugField(
         verbose_name=_("slug"),
@@ -144,6 +194,21 @@ class CertificateClaim(models.Model):
         max_length=255,
         choices=CertificateClaimStatuses.choices(),
         default=CertificateClaimStatuses.AWAITING_APPROVAL,
+    )
+    applied_at = models.DateTimeField(
+        verbose_name=_("applied at")
+    )
+    response_issued_at = models.DateTimeField(
+        verbose_name=_("response issued at"), null=True, blank=False
+    )
+    response_comments = models.TextField(
+        verbose_name=_("response comments"),
+        # null=True,
+        blank=True,
+        validators=[validators.ProhibitNullCharactersValidator()],
+    )
+    expires_at = models.DateTimeField(
+        verbose_name=_("expires at"), null=True, blank=True
     )
     created_at = models.DateTimeField(
         verbose_name=_("created at"), editable=False, auto_now_add=True

@@ -1,3 +1,18 @@
+- model: profiles.profiletag
+  pk: 050aca9c-caa5-4fc2-a3d3-6b39769eb8df
+  fields:
+    slug: university-educator
+    name: Üniversite Eğitmen
+- model: profiles.profiletag
+  pk: c7c4fb2c-7c02-4066-b636-b4e9d3234dd3
+  fields:
+    slug: university-attendee
+    name: Üniversite Katılımcı
+- model: profiles.profiletag
+  pk: d5fda319-68b6-47c4-adc1-2a4e90f5aa33
+  fields:
+    slug: university-mentor
+    name: Üniversite Mentör
 - model: profiles.profile
   pk: a072155e-5e0b-49cf-8d5b-c46b0e7a8001
   fields:
@@ -11,15 +26,18 @@
     email: eser@ozvataf.com
     phone: 90 5115001122
     profile_picture_uri: https://avatars.githubusercontent.com/u/866558?s=460&u=b22a39f91f830670029edf4a75a4917d167e3477&v=4
-    bio: "Thinks, Plans, Makes Development, Talks on Software"
-    location_city: null
+    bio: Thinks, Plans, Makes Development, Talks on Software
+    location_city: 2846683c-2821-4f53-b8ec-02ccb434627b
     location_country: 8df39c75-4a92-4d40-a4ab-156e17de133a
     timezone: Europe/Istanbul
     notification_messages: true
     created_at: 2021-02-28 12:09:26.338436+00:00
-    updated_at: 2021-02-28 12:09:26.338436+00:00
+    updated_at: 2021-03-03 22:43:49.867075+00:00
     deleted_at: null
     users:
     - 7675cf2f-315c-42cc-82ea-f048e00f28cc
+    tags:
+    - 050aca9c-caa5-4fc2-a3d3-6b39769eb8df
+    - d5fda319-68b6-47c4-adc1-2a4e90f5aa33
     languages:
     - 78b0c0b5-6680-43ac-89be-44d2f8d40522

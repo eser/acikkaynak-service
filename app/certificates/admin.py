@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Certificate, CertificateClaim, CertificateRequirement
+from .models import Certificate, CertificateClaim, CertificateRequirement, CertificateCategory
 
 
 class CertificateRequirementInline(admin.TabularInline):
@@ -13,6 +13,12 @@ class CertificateClaimAdmin(admin.ModelAdmin):
 
     list_display = ("profile", "certificate", "type")
     
+
+class CertificateCategoryAdmin(admin.ModelAdmin):
+    search_fields = ("slug", "name")
+
+    list_display = ("name",)
+
 
 class CertificateAdmin(admin.ModelAdmin):
     search_fields = ("slug", "name")
@@ -43,3 +49,4 @@ class CertificateAdmin(admin.ModelAdmin):
 
 admin.site.register(Certificate, CertificateAdmin)
 admin.site.register(CertificateClaim, CertificateClaimAdmin)
+admin.site.register(CertificateCategory, CertificateCategoryAdmin)
